@@ -6,6 +6,8 @@
 #include "../Thirdparty/imgui/imgui_impl_glfw.h"
 #include "../Thirdparty/imgui/imgui_impl_opengl3.h"
 
+
+
 WindowMrg::WindowMrg()
 	:
 	m_width(1920),
@@ -56,27 +58,15 @@ bool WindowMrg::ShouldClose() {
 }
 
 void WindowMrg::UpdateWindow(RenderFunc renderFunc) {
-	glClearColor(
+	/*glClearColor(
 		m_backgroundColor.r,
 		m_backgroundColor.g,
 		m_backgroundColor.b,
-		m_backgroundColor.a);
-	glEnable(GL_DEPTH_TEST);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+		m_backgroundColor.a);*/
 	// Render Function!
 	if (renderFunc) renderFunc();
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-	for (const auto& guiFunc : m_imguiFuncs) {
 
-		guiFunc();
-	}ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-	glfwSwapBuffers(m_glfwWnd);
-	glfwPollEvents();
+	
 }
 
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -92,7 +82,6 @@ void MouseButtonCallback(GLFWwindow* window, int mouse, int action, int mods) {
 }
 
 void FrameBufferSizeCallback(GLFWwindow* window, int width, int height) {
-
 	WindowMrg::GetInstance().m_width = width;
 	WindowMrg::GetInstance().m_height = height;
 	glViewport(0, 0, width, height);

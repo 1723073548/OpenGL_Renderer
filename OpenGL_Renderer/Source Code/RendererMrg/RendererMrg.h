@@ -1,6 +1,5 @@
 #pragma once
 #include "../WindowMrg/WindowMrg.h"
-#include "../Scene/Scene.h"
 #include "../Tools/SingletonTemplate.h"
 
 class RendererMrg : public Singleton<RendererMrg> {
@@ -8,9 +7,6 @@ class RendererMrg : public Singleton<RendererMrg> {
 
 public:
 	RendererMrg();
-
-public:
-	Scene m_mainScene;
 
 public:
 	int Go();

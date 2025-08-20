@@ -145,8 +145,8 @@
     <ClCompile Include="Source Code\main.cpp" />
     <ClCompile Include="Source Code\Mesh\Mesh.cpp" />
     <ClCompile Include="Source Code\Model\Model.cpp" />
-    <ClCompile Include="Source Code\Scene\Scene.cpp" />
     <ClCompile Include="Source Code\Shader\Shader.cpp" />
+    <ClCompile Include="Source Code\Skybox\Skybox.cpp" />
     <ClCompile Include="Source Code\Thirdparty\imGUI\imgui.cpp" />
     <ClCompile Include="Source Code\Thirdparty\imGUI\imgui_demo.cpp" />
     <ClCompile Include="Source Code\Thirdparty\imGUI\imgui_draw.cpp" />
@@ -163,8 +163,8 @@
     <ClInclude Include="Source Code\Light\Light.h" />
     <ClInclude Include="Source Code\Mesh\Mesh.h" />
     <ClInclude Include="Source Code\Model\Model.h" />
-    <ClInclude Include="Source Code\Scene\Scene.h" />
     <ClInclude Include="Source Code\Shader\Shader.h" />
+    <ClInclude Include="Source Code\Skybox\Skybox.h" />
     <ClInclude Include="Source Code\Thirdparty\imGUI\imconfig.h" />
     <ClInclude Include="Source Code\Thirdparty\imGUI\imgui.h" />
     <ClInclude Include="Source Code\Thirdparty\imGUI\imgui_impl_glfw.h" />

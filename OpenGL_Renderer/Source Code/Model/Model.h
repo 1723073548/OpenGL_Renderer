@@ -24,7 +24,7 @@ public: // Public-Fields
 	bool m_gammaCorrection;
 
 public: // Public Methods
-    void Draw(std::shared_ptr<Light> light);
+    void Draw(Light light);
 	void Draw(Shader& shader);
 	std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 	unsigned int TextureFromFile(const char* path, const std::string& directory);

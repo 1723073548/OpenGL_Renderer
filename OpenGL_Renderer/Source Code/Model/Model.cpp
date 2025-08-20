@@ -1,9 +1,9 @@
 #define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 #include <iostream>
 #include <vector>
 #include <gl/glew.h>
 #include <glfw/glfw3.h>
-#include <stb_image.h>
 #include <memory>
 
 #include "Model.h"
@@ -12,10 +12,10 @@ Model::Model(std::string path, std::shared_ptr<Shader> shader) : m_shader(shader
     loadModel(path);
 }
 
-void Model::Draw(std::shared_ptr<Light> light) {
+void Model::Draw(Light light) {
     if (m_shader) {
         m_shader->Use();
-        light->SetLight(m_shader);
+        light.SetLight(m_shader);
         for (auto& mesh : m_meshes) {
             mesh.Draw(*m_shader);
         }
