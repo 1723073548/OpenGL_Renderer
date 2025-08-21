@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "RendererMrg/RendererMrg.h"
+#include "MainScene/MainScene.h"
 
 int main(int argc, char* argv[]) {
 	try	{
-		return RendererMrg::GetInstance().Go();
+		return MainScene::GetInstance().Render();
 	}
 	catch (const std::exception& e) {
 		std::cout << e.what() << std::endl;

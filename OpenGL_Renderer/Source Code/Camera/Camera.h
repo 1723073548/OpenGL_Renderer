@@ -15,7 +15,7 @@ public: // Public-Fields
 	glm::vec3 Right;
 	glm::vec3 WorldUp;
 	float MouseSensitive = 0.02f;
-	float MoveSpeed = 0.0025f;
+	float MoveSpeed = 0.01f;
 
 private: // Private-Fields
 	bool FirstMouse;

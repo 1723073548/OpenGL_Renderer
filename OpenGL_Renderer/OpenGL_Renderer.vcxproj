@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source Code\RendererMrg\RendererMrg.cpp" />
+    <ClCompile Include="Source Code\MainScene\MainScene.cpp" />
     <ClCompile Include="Source Code\Camera\Camera.cpp" />
     <ClCompile Include="Source Code\Light\Light.cpp" />
     <ClCompile Include="Source Code\main.cpp" />
@@ -155,10 +155,9 @@
     <ClCompile Include="Source Code\Thirdparty\imGUI\imgui_tables.cpp" />
     <ClCompile Include="Source Code\Thirdparty\imGUI\imgui_widgets.cpp" />
     <ClCompile Include="Source Code\Transform\Transform.cpp" />
-    <ClCompile Include="Source Code\WindowMrg\WindowMrg.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source Code\RendererMrg\RendererMrg.h" />
+    <ClInclude Include="Source Code\MainScene\MainScene.h" />
     <ClInclude Include="Source Code\Camera\Camera.h" />
     <ClInclude Include="Source Code\Light\Light.h" />
     <ClInclude Include="Source Code\Mesh\Mesh.h" />
@@ -178,7 +177,6 @@
     <ClInclude Include="Source Code\Tools\HandleTexture.h" />
     <ClInclude Include="Source Code\Tools\SingletonTemplate.h" />
     <ClInclude Include="Source Code\Transform\Transform.h" />
-    <ClInclude Include="Source Code\WindowMrg\WindowMrg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
