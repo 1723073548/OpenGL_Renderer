@@ -53,6 +53,4 @@ void main()
 	vec3 directLightValue = HandleDirectLight(dirLight, vec3(1), vec3(1));
 	
 	color = vec4(directLightValue, 1.0);
-
-	gl_FragDepth = gl_FragCoord.z;
 }

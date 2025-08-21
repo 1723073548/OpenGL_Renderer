@@ -44,5 +44,5 @@ public: // Public-Fields
 	float m_quadratic;			 // 二次衰减
 
 public: // Public-Methods
-	void SetLight(std::shared_ptr<Shader> shader);
+	void SetLight(Shader shader);
 };

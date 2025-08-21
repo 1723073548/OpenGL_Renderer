@@ -8,23 +8,18 @@
 
 #include "Model.h"
 
-Model::Model(std::string path, std::shared_ptr<Shader> shader) : m_shader(shader) {
+Model::Model(std::string path, Shader shader) : m_shader(shader) {
     loadModel(path);
 }
 
-void Model::Draw(Light light) {
-    if (m_shader) {
-        m_shader->Use();
-        light.SetLight(m_shader);
-        for (auto& mesh : m_meshes) {
-            mesh.Draw(*m_shader);
-        }
-    }
-}
+void Model::Draw(std::function<void()> setShaderParam) {
+    m_shader.Use();
 
-void Model::Draw(Shader& shader) {
-    for (unsigned int i = 0; i < m_meshes.size(); i++)
-        m_meshes[i].Draw(shader);
+    setShaderParam(); // 配置Shader参数
+    
+    for (auto& mesh : m_meshes) {
+        mesh.Draw(m_shader);
+    }
 }
 
 void Model::loadModel(std::string path) {

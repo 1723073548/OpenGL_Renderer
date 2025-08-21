@@ -102,6 +102,7 @@ unsigned int Skybox::LoadCubemap(std::vector<std::string> faces)
 
 void Skybox::Render(glm::mat4 viewTrans, glm::mat4 projTrans) {
     glDepthFunc(GL_LEQUAL);
+
     m_shader.Use();
     m_shader.setMat4("viewTrans", viewTrans);
     m_shader.setMat4("projTrans", projTrans);
@@ -110,5 +111,6 @@ void Skybox::Render(glm::mat4 viewTrans, glm::mat4 projTrans) {
     glBindTexture(GL_TEXTURE_CUBE_MAP, m_textureID);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
+
     glDepthFunc(GL_LESS);
 }

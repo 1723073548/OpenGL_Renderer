@@ -58,15 +58,7 @@ bool WindowMrg::ShouldClose() {
 }
 
 void WindowMrg::UpdateWindow(RenderFunc renderFunc) {
-	/*glClearColor(
-		m_backgroundColor.r,
-		m_backgroundColor.g,
-		m_backgroundColor.b,
-		m_backgroundColor.a);*/
-	// Render Function!
 	if (renderFunc) renderFunc();
-
-	
 }
 
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {

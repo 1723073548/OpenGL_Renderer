@@ -11,7 +11,6 @@
 #include "../Camera/Camera.h"
 #include "../Light/Light.h"
 #include "../Skybox/Skybox.h"
-
 #include "../Thirdparty/imgui/imgui.h"
 #include "../Thirdparty/imgui/imgui_impl_glfw.h"
 #include "../Thirdparty/imgui/imgui_impl_opengl3.h"
@@ -38,19 +37,20 @@ int RendererMrg::Go() {
         float gloss = 0.8f;
     } material;
 
-    // Init Scene Object
     Light light(Light::LightType::Directlight, glm::vec3(-1.0f, -1.0f, 1.0f));
+
     Shader shader(
         "Resource/Shader Files/None Texture/VertexShader.vert",
         "Resource/Shader Files/None Texture/FragmentShader.frag");
-    Model teapot(
-        "Resource/Model/teapot.obj",
-		std::make_shared<Shader>(shader));
+
+    Model teapot("Resource/Model/teapot.obj", shader);
+
     Camera camera(
         glm::vec3(0, 1.5f, 5), // Position
         0,                     // Pitch
         -90,                   // Yaw
 		glm::vec3(0, 1, 0));   // World Up
+
     Skybox skybox(
         std::vector<std::string>{
             "Resource/Picture/Skybox/right.jpg",
@@ -116,17 +116,13 @@ int RendererMrg::Go() {
 #pragma endregion
 
 #pragma endregion
+
     glEnable(GL_DEPTH_TEST);
+    glfwSwapInterval(1);
+
     // Main Loop
 	while (!WindowMrg::GetInstance().ShouldClose()) {
-        // Change Material
-        shader.setVec3("material.ambientColor", material.ambientColor);
-        shader.setVec3("material.diffuseColor", material.diffuseColor);
-        shader.setVec3("material.specularColor", material.specularColor);
-        shader.setFloat("material.gloss", material.gloss);
-
-        // Render Scene
-        glm::mat4 modelTrans, viewTrans, projTrans;
+        glm::mat4 viewTrans, projTrans;
         viewTrans = camera.GetViewMatrix();
         projTrans = glm::perspective(
             glm::radians(45.0f),
@@ -134,24 +130,26 @@ int RendererMrg::Go() {
             0.1f,
             100.0f);
 
-        // 只在每帧渲染前清除一次缓冲区
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
-        // Matrix
-        modelTrans = teapot.m_transform.GetModelMatrix();
-        shader.setMat4("modelTrans", modelTrans);
-        shader.setMat4("viewTrans", viewTrans);
-        shader.setMat4("projTrans", projTrans);
-        shader.setVec3("cameraPos", camera.Position);
-        teapot.Draw(light);
+
+        teapot.Draw([&]() {
+            shader.setMat4("modelTrans", teapot.m_transform.GetModelMatrix());
+            shader.setMat4("viewTrans", viewTrans);
+            shader.setMat4("projTrans", projTrans);
+            shader.setVec3("cameraPos", camera.Position);
+            shader.setVec3("material.ambientColor", material.ambientColor);
+            shader.setVec3("material.diffuseColor", material.diffuseColor);
+            shader.setVec3("material.specularColor", material.specularColor);
+            shader.setFloat("material.gloss", material.gloss);
+            light.SetLight(teapot.m_shader);
+        });
 
         if (showSkybox) {
             skybox.Render(
                 glm::mat4(glm::mat3(viewTrans)),
                 projTrans);
         }
-        
         
 #pragma region Handle imGUI
         ImGui_ImplOpenGL3_NewFrame();
